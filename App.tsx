@@ -1,27 +1,33 @@
+import { useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Button } from 'react-native';
 
 export default function App() {
-
-  let quantity: number = 12;
+  const [quantity, setQuantity] = useState<number>(12);
 
   const removeNumber = () => {
-    quantity = quantity - 1;
-    console.log(quantity)
-  }; 
+    setQuantity((prevQuantity) => {
+      const newQuantity = prevQuantity - 1;
+      console.log(newQuantity);
+      return newQuantity;
+    });
+  };
 
   const addNumber = () => {
-    quantity = quantity + 1;
-    console.log(quantity)
-  }
+    setQuantity((prevQuantity) => {
+      const newQuantity = prevQuantity + 1;
+      console.log(newQuantity);
+      return newQuantity;
+    });
+  };
 
   return (
     <View style={styles.container}>
 
       <View style={styles.btnRow}>
-        <Button title='-' onPress={removeNumber}/>
+        <Button title='-' onPress={removeNumber} />
         <Text style={styles.txtLbl}>{quantity}</Text>
-        <Button title='+' onPress={addNumber}/>
+        <Button title='+' onPress={addNumber} />
       </View>
 
       <StatusBar style="auto" />
