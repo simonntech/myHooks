@@ -3,12 +3,14 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Button } from 'react-native';
 
 export default function App() {
-  const [quantity, setQuantity] = useState<number>(12);
+  const [quantity, setQuantity] = useState<number>(1);
+  const [price, setPrice] = useState(10.90);
+  const basePrice = 10.90
 
   const removeNumber = () => {
     setQuantity((prevQuantity) => {
       const newQuantity = prevQuantity - 1;
-      console.log(newQuantity);
+      setPrice(basePrice * newQuantity);
       return newQuantity;
     });
   };
@@ -16,7 +18,7 @@ export default function App() {
   const addNumber = () => {
     setQuantity((prevQuantity) => {
       const newQuantity = prevQuantity + 1;
-      console.log(newQuantity);
+      setPrice(basePrice * newQuantity);
       return newQuantity;
     });
   };
@@ -29,6 +31,8 @@ export default function App() {
         <Text style={styles.txtLbl}>{quantity}</Text>
         <Button title='+' onPress={addNumber} />
       </View>
+
+      <Text style={styles.txtLbl}>Preço: R${price}</Text>
 
       <StatusBar style="auto" />
     </View>
