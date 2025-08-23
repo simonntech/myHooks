@@ -1,11 +1,16 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Button } from 'react-native';
 
 export default function App() {
+
   const [quantity, setQuantity] = useState<number>(1);
   const [price, setPrice] = useState(10.90);
   const basePrice = 10.90
+
+  useEffect(() => {
+    console.log("quantidade alterada")
+  }, [quantity]);
 
   const removeNumber = () => {
     setQuantity((prevQuantity) => {
